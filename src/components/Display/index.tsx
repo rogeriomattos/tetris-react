@@ -1,16 +1,23 @@
+import { useContext } from "react";
+import { GameContext } from "../../context/game";
 import Block from "../Block";
 import { DisplayContainer, Row } from "./styles";
 
-const Display = () => (
-    <DisplayContainer data-testid="display-container">
-        {Array.from({ length: 20 }).map((row, indexRow) => (
-            <Row key={indexRow} data-testid="display-row">
-                {Array.from({ length: 10 }).map((block, indexBlock) => (
-                    <Block key={indexBlock} />
-                ))}
-            </Row>
-        ))}
-    </DisplayContainer>
-);
+const Display = () => {
+    const { game } = useContext(GameContext);
+    const { display:displayGame } = game;
+
+    return(
+        <DisplayContainer data-testid="display-container">
+            {displayGame.map((row, indexRow) => (
+                <Row key={indexRow} data-testid="display-row">
+                    {row.map((block, indexBlock) => (
+                        <Block key={indexBlock} {...block} />
+                    ))}
+                </Row>
+            ))}
+        </DisplayContainer>
+    );
+}
 
 export default Display;

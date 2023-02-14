@@ -1,21 +1,27 @@
 import styled from 'styled-components';
+import { BlockTypes } from '../../enums/blockTypes';
 
-export const BlockContainer = styled.div`
+type BlockContainerProps = {
+    blockColor?: string;
+    type: BlockTypes;
+};
+
+export const BlockContainer = styled.div<BlockContainerProps>`
     display: block;
     width: 30px;
     height: 30px;
     background: transparent;
-    border-color: #000000;
+    border-color: ${(props) => props.blockColor? props.blockColor : `#000000`};
     border-width: 2px;
     border-style: solid;
     box-sizing: border-box;
     position: relative;
-    opacity: 0.1;
+    opacity: ${(props) => props.blockColor? `1` : `0.1`};
     border-radius: 2px;
     &:after {
         content: "";
         position: absolute;
-        background: #000;
+        background: ${(props) => props.blockColor? props.blockColor : `#000000`};
         width: calc(100% - 4px);
         height: calc(100% - 4px);
         transform: translate(-50%, -50%);

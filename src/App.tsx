@@ -1,9 +1,9 @@
-import Display from "./components/Display";
+import Game from "./components/Game";
 
 function App() {
   return (
     <div>
-      <Display />
+      <Game />
     </div>
   );
 }
