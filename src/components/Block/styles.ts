@@ -11,17 +11,17 @@ export const BlockContainer = styled.div<BlockContainerProps>`
     width: 30px;
     height: 30px;
     background: transparent;
-    border-color: ${(props) => props.blockColor? props.blockColor : `#000000`};
+    border-color: ${(props) => props.blockColor && props.type === BlockTypes.FILLED ? props.blockColor : `#000000`};
     border-width: 2px;
     border-style: solid;
     box-sizing: border-box;
     position: relative;
-    opacity: ${(props) => props.blockColor? `1` : `0.1`};
+    opacity: ${(props) => props.blockColor && props.type === BlockTypes.FILLED ? `1` : `0.1`};
     border-radius: 2px;
     &:after {
         content: "";
         position: absolute;
-        background: ${(props) => props.blockColor? props.blockColor : `#000000`};
+        background: ${(props) => props.blockColor && props.type === BlockTypes.FILLED ? props.blockColor : `#000000`};
         width: calc(100% - 4px);
         height: calc(100% - 4px);
         transform: translate(-50%, -50%);

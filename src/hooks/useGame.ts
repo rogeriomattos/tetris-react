@@ -1,10 +1,12 @@
-import { useState } from "react"
-import { emptyGame } from "../utlis/emptyGame";
+import { useState } from "react";
+import { usePlayer } from "./usePlayer";
+import { useStage } from "./useStage";
 
 export const useGame = () => {
-    const [display, setDisplay] = useState(emptyGame);
+    const { player } = usePlayer();
+    const { stage } = useStage(player);
 
     return {
-        display,
+        display: stage,
     };
 }
