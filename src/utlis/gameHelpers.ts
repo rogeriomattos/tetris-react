@@ -21,17 +21,44 @@ export const isBorderRightLimit = (player: Player) => {
     return Dimensions.X === (pos.x + tetramino.shape[0].length);
 }
 
-export const isCollidedWithSomthingBlock = (player: Player, stage: BlockItem[][]) => {
+export const isCollidedBottomWithSomthingBlock = (player: Player, stage: BlockItem[][]) => {
+    const { tetramino:{ shape }, pos } = player;
+
+    for(let y = 0; y < shape.length; y++) {
+        const row = shape[y];
+        for(let x = 0; x < row.length; x++) {
+            const pItem = row[x];
+            if(pItem === BlockTypes.FILLED) {
+                const stageY = pos.y + y + 1;
+                const stageBlock = stage[stageY][pos.x + x];
+                
+                if(stageY<=Dimensions.Y && !stageBlock.isPlayer && stageBlock.type === BlockTypes.FILLED){
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+export const isCollidedSideWithSomthingBlock = (moveDir: 'ArrowRight' | 'ArrowLeft', player: Player, stage: BlockItem[][]) => {
     const { tetramino:{ shape }, pos } = player;
     
-    const bottom = shape.length + pos.y;
-    const right = shape[0].length + pos.x;
+    const left = pos.x - 1;
+    const right = shape[0].length - 1 + pos.x;
 
-    for(let x = 0; x < shape[shape.length - 1].length; x++) {
-        const pItem = shape[shape.length - 1][x];
-        if(pItem === BlockTypes.FILLED) {
-            if(stage[bottom][pos.x+x].type === BlockTypes.FILLED){
-                return true;
+    for(let y = 0; y < shape.length; y++) {
+        const row = shape[y];
+        for(let x = 0; x < row.length; x++) {
+            const pItem = row[x];
+            if(pItem === BlockTypes.FILLED) {
+                const stageX = (moveDir === 'ArrowLeft' ? left + x  : right + 1 );
+                const stageBlock = stage[pos.y+y][stageX];
+                
+                if(stageX <= Dimensions.X && !stageBlock.isPlayer && stageBlock.type === BlockTypes.FILLED){
+                    return true;
+                }
             }
         }
     }
