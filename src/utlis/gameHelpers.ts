@@ -29,11 +29,8 @@ export const isCollidedWithSomthingBlock = (player: Player, stage: BlockItem[][]
 
     for(let x = 0; x < shape[shape.length - 1].length; x++) {
         const pItem = shape[shape.length - 1][x];
-
         if(pItem === BlockTypes.FILLED) {
-            console.log('stage[bottom][pos.x+index]', stage[bottom][pos.x+x]);
             if(stage[bottom][pos.x+x].type === BlockTypes.FILLED){
-                console.log(`retornou`);
                 return true;
             }
         }
