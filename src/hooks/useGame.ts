@@ -30,6 +30,10 @@ export const useGame = () => {
 
     useInterval(drop, dropTime);
 
+    const move = ({ key  }:React.KeyboardEvent<HTMLDivElement>) => {
+        console.log({key});
+    }
+
     const start = () => {
         setDropTime(Times.Initial);
     };
@@ -41,6 +45,7 @@ export const useGame = () => {
     return {
         display: stage,
         start,
-        stop
+        stop,
+        move,
     };
 }
