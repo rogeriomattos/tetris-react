@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Times } from "../gameConfig";
-import { isBorderBottomLimit, isCollidedWithSomthingBlock } from "../utlis/gameHelpers";
+import { isBorderBottomLimit, isBorderLeftLimit, isBorderRightLimit, isCollidedBottomWithSomthingBlock, isCollidedSideWithSomthingBlock } from "../utlis/gameHelpers";
 import { useInterval } from "./useInterval";
 import { usePlayer } from "./usePlayer";
 import { useStage } from "./useStage";
@@ -15,8 +15,7 @@ export const useGame = () => {
 
         let newPos = { x , y };
 
-        if (isBorderBottomLimit(player) || isCollidedWithSomthingBlock(player, stage)) {
-            console.log('entrou');
+        if (isBorderBottomLimit(player) || isCollidedBottomWithSomthingBlock(player, stage)) {
             setPlayerCollided(true);
             setTimeout(() => {
                 resetPlayer();
@@ -32,6 +31,15 @@ export const useGame = () => {
 
     const move = ({ key  }:React.KeyboardEvent<HTMLDivElement>) => {
         console.log({key});
+        if(key === 'ArrowRight' && !isBorderRightLimit(player) && !isCollidedSideWithSomthingBlock(key, player, stage)){
+            updatePlayerPos(player.pos.x + 1, player.pos.y);
+        }
+        if(key === 'ArrowLeft' && !isBorderLeftLimit(player) && !isCollidedSideWithSomthingBlock(key, player, stage)){
+            updatePlayerPos(player.pos.x - 1, player.pos.y);
+        }
+        if(key === 'ArrowDown' && !isBorderBottomLimit(player) && !isCollidedBottomWithSomthingBlock(player, stage)){
+            updatePlayerPos(player.pos.x, player.pos.y+1);
+        }
     }
 
     const start = () => {
