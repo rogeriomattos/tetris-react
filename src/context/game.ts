@@ -10,5 +10,6 @@ export const GameContext = createContext<GameContextType>({
         display: [[]],
         start: () => {},
         stop: () => {},
+        move: () => {},
     },
 });
