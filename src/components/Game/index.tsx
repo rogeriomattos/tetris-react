@@ -10,6 +10,8 @@ const GameComponent = () => {
         <GameContext.Provider value={{
             game
         }}>
+            <button onClick={game.start}>start</button>
+            <button onClick={game.stop}>stop</button>
             <Display />
         </GameContext.Provider>
     );

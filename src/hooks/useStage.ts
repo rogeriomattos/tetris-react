@@ -8,20 +8,22 @@ export const useStage = (player:Player) => {
 
 
     const updateStage = () => {
-        const newStage = stage;
+        const newStage = stage.map(row => row.map(cell => (
+            cell.isPlayer? {type: BlockTypes.EMPTY}: cell
+        )));
 
         const { pos } = player;
-        player.tetramino.shape.forEach((row, x) => {
-            row.forEach((cell, y) => {
-                newStage[pos.x + x][pos.y + y] = {
-                    type: cell,
-                    color: player.tetramino.color,
-                };
+        player.tetramino.shape.forEach((row, y) => {
+            row.forEach((cell, x) => {
+                if(cell === BlockTypes.FILLED)
+                    newStage[pos.y + y][pos.x + x] = {
+                        type: cell,
+                        color: player.tetramino.color,
+                        isPlayer: !player.isCollided,
+                    };
             });
         });
 
-        console.log({player});
-        console.log(`updateStage`, {newStage});
         setStage([...newStage]);
     };
 
