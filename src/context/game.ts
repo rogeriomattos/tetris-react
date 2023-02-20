@@ -8,5 +8,7 @@ type GameContextType = {
 export const GameContext = createContext<GameContextType>({
     game: {
         display: [[]],
+        start: () => {},
+        stop: () => {},
     },
 });

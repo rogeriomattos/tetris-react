@@ -6,19 +6,19 @@ export const TETROMINOS: tetraminioList = {
     I: {
         shape: [
             [
-                EMPTY, FILLED, EMPTY, EMPTY
+                FILLED,
             ],
             [
-                EMPTY, FILLED, EMPTY, EMPTY
+                FILLED,
             ],
             [
-                EMPTY, FILLED, EMPTY, EMPTY
+                FILLED,
             ],
             [
-                EMPTY, FILLED, EMPTY, EMPTY
+                FILLED,
             ],
         ],
-        color: '#000',
+        color: '#aa32aa',
     },
     O: {
         shape: [
@@ -29,7 +29,7 @@ export const TETROMINOS: tetraminioList = {
                 FILLED, FILLED,
             ],
         ],
-        color: '#000',
+        color: '#89e03b',
     }, 
     T: {
         shape: [
@@ -40,35 +40,35 @@ export const TETROMINOS: tetraminioList = {
                 EMPTY, FILLED, EMPTY,
             ],
         ],
-        color: '#000',
+        color: '#fccc00',
     }, 
     J: {
         shape: [
             [
-                EMPTY, FILLED, EMPTY,
+                EMPTY, FILLED, 
             ],
             [
-                EMPTY, FILLED, EMPTY,
+                EMPTY, FILLED, 
             ],
             [
-                FILLED, FILLED, EMPTY,
+                FILLED, FILLED,
             ],
         ],
-        color: '#000',
+        color: '#fe9000',
     }, 
     L: {
         shape: [
             [
-                EMPTY, FILLED, EMPTY,
+                FILLED, EMPTY,
             ],
             [
-                EMPTY, FILLED, EMPTY,
+                FILLED, EMPTY,
             ],
             [
-                EMPTY, FILLED, FILLED,
+                FILLED, FILLED,
             ],
         ],
-        color: '#000',
+        color: '#26b550',
     }, 
     S: {
         shape: [
@@ -79,7 +79,7 @@ export const TETROMINOS: tetraminioList = {
                 FILLED, FILLED, EMPTY,
             ],
         ],
-        color: '#000',
+        color: '#26b550',
     }, 
     Z: {
         shape: [
@@ -90,7 +90,7 @@ export const TETROMINOS: tetraminioList = {
                 EMPTY, FILLED, FILLED,
             ],
         ],
-        color: '#000',
+        color: '#26b550',
     }, 
     
 };

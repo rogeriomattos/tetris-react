@@ -6,4 +6,5 @@ declare type Player = {
         x: number;
     };
     tetramino: Tetramino;
+    isCollided: boolean;
 }
