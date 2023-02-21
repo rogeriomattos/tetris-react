@@ -6,10 +6,13 @@ import { usePlayer } from "./usePlayer";
 import { useStage } from "./useStage";
 
 export const useGame = () => {
+    const [dropTime, setDropTime] = useState<number|null>(null);
+    const [gameOver, setGameOver] = useState(false);
+    
     const { player, updatePlayerPos, resetPlayer, setPlayerCollided } = usePlayer();
     const { stage, reactStage } = useStage(player);
-    const [dropTime, setDropTime] = useState<number|null>(null);
-    
+
+
     const drop = () => {
         const { x, y } = player.pos;
 
@@ -17,9 +20,15 @@ export const useGame = () => {
 
         if (isBorderBottomLimit(player) || isCollidedBottomWithSomthingBlock(player, stage)) {
             setPlayerCollided(true);
-            setTimeout(() => {
-                resetPlayer();
-            }, 50);
+            if (player.pos.y < 1) {
+                console.log('GAME OVER!!!');
+                setGameOver(true);
+                setDropTime(null);
+            } else {
+                setTimeout(() => {
+                    resetPlayer();
+                }, 50);
+            }
         } else {
             newPos.y+=1;
             updatePlayerPos(newPos.x, newPos.y);
@@ -44,6 +53,7 @@ export const useGame = () => {
 
     const start = () => {
         setDropTime(Times.Initial);
+        setGameOver(false);
         reactStage();
         resetPlayer();
     };
