@@ -17,7 +17,7 @@ const GameComponent = () => {
                     <Display />
                     <GamePanel>
                         <StartButton />
-                        <button onClick={game.stop}>stop</button>
+                        {/* <button onClick={game.stop}>stop</button> */}
                     </GamePanel>
                 </Container>    
             </UserKeyCapture>
