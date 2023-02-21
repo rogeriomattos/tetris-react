@@ -2,7 +2,8 @@ import { useGame } from "../../hooks/useGame";
 import Display from "../Display";
 import { GameContext } from '../../context/game';
 import { UserKeyCapture } from "../UserKeyCapture";
-
+import { StartButton } from "../StartButton";
+import { Container, GamePanel } from "./styles";
 
 const GameComponent = () => {
     const game = useGame();
@@ -12,9 +13,13 @@ const GameComponent = () => {
             game
         }}>
             <UserKeyCapture>
-                <button onClick={game.start}>start</button>
-                <button onClick={game.stop}>stop</button>
-                <Display />
+                <Container>
+                    <Display />
+                    <GamePanel>
+                        <StartButton />
+                        <button onClick={game.stop}>stop</button>
+                    </GamePanel>
+                </Container>    
             </UserKeyCapture>
         </GameContext.Provider>
     );

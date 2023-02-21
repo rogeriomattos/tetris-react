@@ -2,7 +2,7 @@ import { BlockTypes } from "../enums/blockTypes";
 
 const { EMPTY, FILLED } = BlockTypes;
 
-export const TETROMINOS: tetraminioList = {
+export const TETRAMINiOS: tetraminioList = {
     I: {
         shape: [
             [
@@ -98,7 +98,7 @@ export const TETROMINOS: tetraminioList = {
 export const getRandomTetramino = () => {
     const possibilities:Array<'Z'|'I'|'S'|'L'|'J'|'O'|'T'> = ['Z', 'I','J','L','O','S','T'];
 
-    const index = Math.floor(Math.random() * 6);
+    const index = Math.floor(Math.random() * 7);
     
-    return  TETROMINOS[possibilities[index]];
+    return  TETRAMINiOS[possibilities[index]];
 }

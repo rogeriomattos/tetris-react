@@ -7,7 +7,7 @@ import { useStage } from "./useStage";
 
 export const useGame = () => {
     const { player, updatePlayerPos, resetPlayer, setPlayerCollided } = usePlayer();
-    const { stage } = useStage(player);
+    const { stage, reactStage } = useStage(player);
     const [dropTime, setDropTime] = useState<number|null>(null);
     
     const drop = () => {
@@ -44,6 +44,8 @@ export const useGame = () => {
 
     const start = () => {
         setDropTime(Times.Initial);
+        reactStage();
+        resetPlayer();
     };
 
     const stop = () => {
