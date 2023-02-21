@@ -3,7 +3,7 @@ import Display from "../Display";
 import { GameContext } from '../../context/game';
 import { UserKeyCapture } from "../UserKeyCapture";
 import { StartButton } from "../StartButton";
-import { Container, GamePanel } from "./styles";
+import { Container, DisplayContainer, GameOverModal, GamePanel } from "./styles";
 
 const GameComponent = () => {
     const game = useGame();
@@ -14,7 +14,13 @@ const GameComponent = () => {
         }}>
             <UserKeyCapture>
                 <Container>
-                    <Display />
+                    <DisplayContainer>
+                        <Display />
+                        {game.gameOver &&
+                        <GameOverModal>
+                            Game over
+                        </GameOverModal>}
+                    </DisplayContainer>
                     <GamePanel>
                         <StartButton />
                         {/* <button onClick={game.stop}>stop</button> */}
