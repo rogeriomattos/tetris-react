@@ -14,3 +14,20 @@ export const GamePanel = styled.div`
     gap: 4px;
     width: 100%;
 `;
+
+export const DisplayContainer = styled.div`
+    position: relative;
+`;
+
+export const GameOverModal = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 20px;
+    font-size: 20px;
+    box-shadow: 0px 5px 5px #aaa;
+`;

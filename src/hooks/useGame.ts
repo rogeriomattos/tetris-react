@@ -67,5 +67,6 @@ export const useGame = () => {
         start,
         stop,
         move,
+        gameOver,
     };
 }
