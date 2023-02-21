@@ -29,7 +29,10 @@ export const useStage = (player:Player) => {
 
     useEffect(() => updateStage(), [player]);
 
+    const reactStage = () => setStage(emptyGame);
+
     return {
-        stage
+        stage,
+        reactStage,
     };
 }
