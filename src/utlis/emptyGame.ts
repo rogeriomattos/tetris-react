@@ -7,3 +7,7 @@ export const emptyGame: BlockItem[][] = Array.from({length: Dimensions.Y}).map(
         type: BlockTypes.EMPTY
     }))
 );
+
+export const EmptyLine: BlockItem[] = Array.from({length: Dimensions.X }).map(() => ({
+    type: BlockTypes.EMPTY
+}));
