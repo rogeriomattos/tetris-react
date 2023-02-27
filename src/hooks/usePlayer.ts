@@ -11,7 +11,7 @@ export const usePlayer = () => {
     const [player, setPlayer] = useState<Player>({
         pos: initialPos,
         tetramino: getRandomTetramino(),
-        isCollided: false
+        isCollided: false, 
     });
 
     const updatePlayerPos = (x: number, y: number) => {
@@ -32,14 +32,45 @@ export const usePlayer = () => {
         setPlayer({
            pos: initialPos,
            tetramino: getRandomTetramino(),
-           isCollided: false
+           isCollided: false,
         });
     };   
+
+    const rotate = () => {
+        const { tetramino:{shape}, pos } = player;
+        const rowLength = shape.length;
+        const cellLength = shape[0].length;
+
+        console.log({
+            rowLength, 
+            cellLength,
+            shape,
+            pos
+        })
+      
+            
+            const newShape = Array.from({ length: cellLength}).map((row, indexRow) => (
+                Array.from({length: rowLength}).map((cell, indexCell) => (
+                    shape[rowLength - 1 - indexCell][indexRow]
+                ))
+            ));
+    
+            setPlayer(prev => ({
+                ...prev,
+                tetramino: {
+                    ...prev.tetramino,
+                    shape: newShape,
+                }
+            }))
+        
+
+    }
 
     return {
         player,
         updatePlayerPos,
         resetPlayer,
         setPlayerCollided,
+        rotate,
     };
 };

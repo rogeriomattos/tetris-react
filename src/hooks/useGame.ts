@@ -9,7 +9,7 @@ export const useGame = () => {
     const [dropTime, setDropTime] = useState<number|null>(null);
     const [gameOver, setGameOver] = useState(false);
     
-    const { player, updatePlayerPos, resetPlayer, setPlayerCollided } = usePlayer();
+    const { player, rotate, updatePlayerPos, resetPlayer, setPlayerCollided } = usePlayer();
     const { stage, reactStage } = useStage(player);
 
 
@@ -48,6 +48,17 @@ export const useGame = () => {
         }
         if(key === 'ArrowDown' && !isBorderBottomLimit(player) && !isCollidedBottomWithSomthingBlock(player, stage)){
             updatePlayerPos(player.pos.x, player.pos.y+1);
+        }
+        if(key === ' ') {
+            const { tetramino: { shape }, pos } = player;
+            const rowLength = shape.length;
+
+            const itIsPossibleToRotate = (pos.x + rowLength <= stage[0].length) 
+                                        && !isCollidedSideWithSomthingBlock('ArrowLeft', player, stage)
+                                        && !isCollidedSideWithSomthingBlock('ArrowRight', player, stage)
+                                        && !isCollidedBottomWithSomthingBlock(player, stage);
+            if(itIsPossibleToRotate)
+                rotate();
         }
     }
 
