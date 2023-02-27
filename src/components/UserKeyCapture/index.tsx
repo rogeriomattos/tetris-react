@@ -1,21 +1,21 @@
-import { PropsWithChildren, useContext } from "react"
+import { PropsWithChildren, useContext, forwardRef } from "react"
 import { GameContext } from "../../context/game";
+import { Container } from './styles';
 
 
+export const UserKeyCapture = forwardRef<HTMLDivElement,PropsWithChildren<{}>>(({children}, ref) => {
 
-export const UserKeyCapture = ({
-    children
-}:PropsWithChildren<{}>) => {
 
     const { game:{ move } } = useContext(GameContext);
 
     return(
-        <div
+        <Container
+            ref={ref}
             role="button"
             tabIndex={0}
             onKeyDown={move}
         >
             {children}
-        </div>
+        </Container>
     );
-};
+});

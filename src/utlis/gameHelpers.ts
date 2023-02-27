@@ -56,7 +56,7 @@ export const isCollidedSideWithSomthingBlock = (moveDir: 'ArrowRight' | 'ArrowLe
                 const stageX = (moveDir === 'ArrowLeft' ? left + x  : right + 1 );
                 const stageBlock = stage[pos.y+y][stageX];
                 
-                if(stageX <= Dimensions.X && !stageBlock.isPlayer && stageBlock.type === BlockTypes.FILLED){
+                if(stageX <= Dimensions.X && !stageBlock?.isPlayer && stageBlock?.type === BlockTypes.FILLED){
                     return true;
                 }
             }

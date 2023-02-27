@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
-    gap: 8px;
+    height: 100%;
+    box-sizing:border-box;
     max-width: 920px;
     margin: 0 auto;
     padding: 12px;
+    >div {
+        display: flex;
+        gap: 8px;
+        height: 100%;
+    }
 `;
 
 export const GamePanel = styled.div`
@@ -13,6 +18,7 @@ export const GamePanel = styled.div`
     flex-direction: column;
     gap: 4px;
     width: 100%;
+    height: 100%;
 `;
 
 export const DisplayContainer = styled.div`

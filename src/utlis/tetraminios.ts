@@ -68,7 +68,7 @@ export const TETRAMINiOS: tetraminioList = {
                 FILLED, FILLED,
             ],
         ],
-        color: '#26b550',
+        color: '#ff00ae',
     }, 
     S: {
         shape: [
@@ -90,7 +90,7 @@ export const TETRAMINiOS: tetraminioList = {
                 EMPTY, FILLED, FILLED,
             ],
         ],
-        color: '#26b550',
+        color: '#4b1ee1',
     }, 
     
 };

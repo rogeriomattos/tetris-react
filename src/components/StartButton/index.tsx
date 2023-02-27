@@ -1,11 +1,17 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { GameContext } from '../../context/game';
 import { Button } from './styles';
 
 export const StartButton = () => {
-    const { game } = useContext(GameContext);
+    const { game, userKeyCaptureRef } = useContext(GameContext);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    const handleOnclick = () => {
+        userKeyCaptureRef?.current?.focus();
+        game.start();
+    }
 
     return (
-        <Button onClick={game.start}>start game</Button>
+        <Button ref={buttonRef} onClick={handleOnclick}>start game</Button>
     );
 }
