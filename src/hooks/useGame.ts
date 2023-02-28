@@ -10,7 +10,7 @@ export const useGame = () => {
     const [gameOver, setGameOver] = useState(false);
     
     const { player, rotate, updatePlayerPos, resetPlayer, setPlayerCollided } = usePlayer();
-    const { stage, reactStage } = useStage(player);
+    const { stage, restartStage } = useStage(player);
 
 
     const drop = () => {
@@ -39,7 +39,6 @@ export const useGame = () => {
     useInterval(drop, dropTime);
 
     const move = ({ key  }:React.KeyboardEvent<HTMLDivElement>) => {
-        console.log({key});
         if(key === 'ArrowRight' && !isBorderRightLimit(player) && !isCollidedSideWithSomthingBlock(key, player, stage)){
             updatePlayerPos(player.pos.x + 1, player.pos.y);
         }
@@ -65,7 +64,7 @@ export const useGame = () => {
     const start = () => {
         setDropTime(Times.Initial);
         setGameOver(false);
-        reactStage();
+        restartStage();
         resetPlayer();
     };
 
