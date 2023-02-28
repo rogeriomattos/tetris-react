@@ -2,7 +2,7 @@
   "short_name": "Tetris React",
   "name": "Game Tetris made in React",
   "icons": [],
-  "start_url": ".",
+  "start_url": "./tetris-react/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
