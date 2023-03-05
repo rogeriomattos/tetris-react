@@ -23,12 +23,7 @@ jobs:
     - run: rm yarn.lock
     - run: git fetch 
     - run: git checkout deploy-prd
-    - run: rm static/*
-    - run: rmdir static
-    - run: rm asset-manifest.json
-    - run: rm index.html
-    - run: rm manifest.json
-    - run: cp -a ./build/* .
+    - run: cp -i -a ./build/* .
     - run: git add * 
     - run: git commit -m "deploy"
     - run: git push
