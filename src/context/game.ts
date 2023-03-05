@@ -1,4 +1,4 @@
-import { createContext, useRef } from "react";
+import { createContext } from "react";
 import { useGame } from "../hooks/useGame";
 
 type GameContextType = {
