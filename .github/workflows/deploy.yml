@@ -24,8 +24,8 @@ jobs:
     - run: git fetch 
     - run: cp -i -a ./build/* .
     - name: Push
-    uses: s0/git-publish-subdir-action@deploy-prd
-    env:
+    - uses: s0/git-publish-subdir-action@deploy-prd
+    - env:
       REPO: self
       BRANCH: build # The branch name where you want to push the assets
       FOLDER: build # The directory where your assets are generated
