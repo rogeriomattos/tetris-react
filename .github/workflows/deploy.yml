@@ -20,8 +20,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm i
     - run: npm run build
-    - run: git add *
-    - run: git stash
     - run: git fetch 
     - run: git checkout deploy-prd
     - run: rmdir -r static
