@@ -22,14 +22,14 @@ jobs:
     - run: npm run build
     - run: rm yarn.lock
     - run: git fetch 
+    - run: git checkout deploy-prd
     - run: cp -i -a ./build/* .
-    - name: Push
-    - uses: s0/git-publish-subdir-action@deploy-prd
-    - env:
-      REPO: self
-      BRANCH: build # The branch name where you want to push the assets
-      FOLDER: build # The directory where your assets are generated
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-      MESSAGE: "Build: ({sha}) {msg}" # The commit message
+    - run: git add static 
+    - run: git add asset-manifest.json
+    - run: git add index.html
+    - run: git add manifest.json
+    - run: git commit -m "deploy"
+    - run: git push
+    
     
     
