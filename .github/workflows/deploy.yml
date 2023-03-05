@@ -24,7 +24,10 @@ jobs:
     - run: git fetch 
     - run: git checkout deploy-prd
     - run: cp -i -a ./build/* .
-    - run: git add * 
+    - run: git add static 
+    - run: git add asset-manifest.json
+    - run: git add index.html
+    - run: git add manifest.json
     - run: git commit -m "deploy"
     - run: git push
     
