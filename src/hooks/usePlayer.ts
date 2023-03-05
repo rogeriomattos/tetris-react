@@ -40,30 +40,20 @@ export const usePlayer = () => {
         const { tetramino:{shape}, pos } = player;
         const rowLength = shape.length;
         const cellLength = shape[0].length;
-
-        console.log({
-            rowLength, 
-            cellLength,
-            shape,
-            pos
-        })
-      
             
-            const newShape = Array.from({ length: cellLength}).map((row, indexRow) => (
-                Array.from({length: rowLength}).map((cell, indexCell) => (
-                    shape[rowLength - 1 - indexCell][indexRow]
-                ))
-            ));
-    
-            setPlayer(prev => ({
-                ...prev,
-                tetramino: {
-                    ...prev.tetramino,
-                    shape: newShape,
-                }
-            }))
-        
+        const newShape = Array.from({ length: cellLength}).map((row, indexRow) => (
+            Array.from({length: rowLength}).map((cell, indexCell) => (
+                shape[rowLength - 1 - indexCell][indexRow]
+            ))
+        ));
 
+        setPlayer(prev => ({
+            ...prev,
+            tetramino: {
+                ...prev.tetramino,
+                shape: newShape,
+            }
+        }));
     }
 
     return {

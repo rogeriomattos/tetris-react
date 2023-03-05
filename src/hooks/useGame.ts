@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Times } from "../gameConfig";
 import { isBorderBottomLimit, isBorderLeftLimit, isBorderRightLimit, isCollidedBottomWithSomthingBlock, isCollidedSideWithSomthingBlock } from "../utlis/gameHelpers";
 import { useInterval } from "./useInterval";
 import { usePlayer } from "./usePlayer";
+import { useScore } from "./useScore";
 import { useStage } from "./useStage";
 
 export const useGame = () => {
@@ -10,8 +11,8 @@ export const useGame = () => {
     const [gameOver, setGameOver] = useState(false);
     
     const { player, rotate, updatePlayerPos, resetPlayer, setPlayerCollided } = usePlayer();
-    const { stage, restartStage } = useStage(player);
-
+    const { resetScore, addLinesToScore, addBlockPoint, ...score } = useScore();
+    const { stage, restartStage } = useStage(player, addLinesToScore);
 
     const drop = () => {
         const { x, y } = player.pos;
@@ -27,6 +28,7 @@ export const useGame = () => {
             } else {
                 setTimeout(() => {
                     resetPlayer();
+                    addBlockPoint();
                 }, 50);
             }
         } else {
@@ -66,11 +68,18 @@ export const useGame = () => {
         setGameOver(false);
         restartStage();
         resetPlayer();
+        resetScore();
     };
 
     const stop = () => {
         setDropTime(null)
     };
+    
+    useEffect(() => {
+        if(score.level !== 11) {
+            setDropTime(old => old ? old - Times.Decrease : old);
+        }
+    }, [score.level]);
 
     return {
         display: stage,
@@ -78,5 +87,6 @@ export const useGame = () => {
         stop,
         move,
         gameOver,
+        score,
     };
 }

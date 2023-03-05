@@ -13,5 +13,10 @@ export const GameContext = createContext<GameContextType>({
         stop: () => {},
         move: () => {},
         gameOver: false,
+        score: {
+            level: 0,
+            lines: 0,
+            points: 0,
+        }
     }, 
 });
