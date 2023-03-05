@@ -5,7 +5,7 @@ import { BlockItem } from "../types/blockItem";
 import { Player } from "../types/player";
 import { emptyGame, EmptyLine } from "../utlis/emptyGame";
 
-export const useStage = (player:Player) => {
+export const useStage = (player:Player, addLinesToScore: (value: number) => void) => {
     const [stage, setStage] = useState(emptyGame);
 
 
@@ -22,11 +22,11 @@ export const useStage = (player:Player) => {
         for(let i = 0; i < linesToRemove.length; i++){
             newStage.unshift(EmptyLine);
         }
-
+        addLinesToScore(linesToRemove.length);
         setStage(newStage);
     }, [stage]);
 
-    const checkLineComplete = useCallback(() => {
+    const checkLineComplete = () => {
         const linesComplete:number[] = [];
         stage.forEach((row, rowIndex) => {
             const lineIsComplete = row.filter((cell) => cell.type === BlockTypes.FILLED && !cell.isPlayer).length === Dimensions.X;
@@ -36,9 +36,9 @@ export const useStage = (player:Player) => {
         if(linesComplete.length > 0){
             removeLines(linesComplete);
         }
-    }, [stage, removeLines]);
+    };
 
-    const updateStage = useCallback(() => {
+    const updateStage = () => {
         const newStage = stage.map(row => row.map(cell => (
             cell.isPlayer? {type: BlockTypes.EMPTY}: cell
         )));
@@ -57,9 +57,9 @@ export const useStage = (player:Player) => {
 
         setStage([...newStage]);
         checkLineComplete();
-    }, [stage, player, checkLineComplete]);
+    };
 
-    useEffect(() => updateStage(), [player, updateStage]);
+    useEffect(() => updateStage(), [player]);
 
     const restartStage = () => setStage(emptyGame);
 

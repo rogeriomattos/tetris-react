@@ -5,6 +5,7 @@ import { UserKeyCapture } from "../UserKeyCapture";
 import { StartButton } from "../StartButton";
 import { Container, DisplayContainer, GameOverModal, GamePanel } from "./styles";
 import { useRef } from "react";
+import { Score } from "../Score";
 
 const GameComponent = () => {
     const game = useGame();
@@ -25,6 +26,7 @@ const GameComponent = () => {
                             </GameOverModal>}
                         </DisplayContainer>
                         <GamePanel>
+                            <Score />
                             <StartButton />
                             {/* <button onClick={game.stop}>stop</button> */}
                         </GamePanel>

@@ -4,5 +4,6 @@ export const Dimensions = {
 };
 
 export const Times = {
-    Initial: 800
+    Initial: 800,
+    Decrease: 70, 
 };
